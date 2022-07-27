@@ -50,7 +50,8 @@ export function loadTextureAsBase64(root, namespace, dir, name) {
  * @ignore
  */
 function loadTexture(root, namespace, dir, name, resolve, reject, forceLoad) {
-    let path = "/assets/" + namespace + "/textures" + dir + name + ".png";
+    let path = "/assets/" + namespace + "/textures" + dir.replace("minecraft:", "") + name.replace("minecraft:", "") + ".png";
+    console.log(path);
 
     if (textureCache.hasOwnProperty(path)) {
         if (textureCache[path] === "__invalid") {

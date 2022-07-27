@@ -445,6 +445,8 @@ let mergeParents_ = function (model, name, stack, hierarchy, assetRoot, resolve,
     delete model["parent"];// remove the child's parent so it will be replaced by the parent's parent
     hierarchy.push(parent);
 
+    parent = parent.replace("minecraft:", ""); // remove minecraft: for compat
+
     loadJsonFromPath(assetRoot, "/assets/minecraft/models/" + parent + ".json").then((parentData) => {
         let mergedModel = Object.assign({}, model, parentData);
         mergeParents_(mergedModel, name, stack, hierarchy, assetRoot, resolve, reject);
